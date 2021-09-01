@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -25,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
 
+    Button btn;
     SignInButton google_sign_in;
     private GoogleApiClient googleApiClient;
     private static final int SIGN_IN = 1;
@@ -37,6 +39,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     }
 
     private void initView() {
+
+        btn = (Button)findViewById(R.id.btn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+        });
 
 
         GoogleSignInOptions gso = new  GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
